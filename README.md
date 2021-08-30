@@ -1,70 +1,44 @@
-# Product Name
-> Short blurb about what your product does.
-
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
+# potts
+Power Transmission Shaft Analysis Framework for Python
+> A framework for the analysis of power transmission shafts in engineering
 
 One to two paragraph statement about your product and what it does.
 
-![](header.png)
+## Description
+`potts` aims to be a general-purpose framework in Python for the analysis 
+(and design) of power transmission shafts in the context of Mechanical 
+Engineering. It is currently under development and has no releases.
 
-## Installation
+Basic characteristics **intended** for `potts` include:
 
-OS X & Linux:
+- **Beam loading analysis**: Solution of beam loading cases with: (i) point loads; 
+(ii) uniformly distributed loads; (iii) linearly distributed loads; and (iv) 
+point moments and torques. Plotting of shear, moment and torque diagrams.
 
-```sh
-npm install my-crazy-module --save
-```
+- **Deflection**: Calculate the resulting deflection of a loading case for the 
+general case of non-constant moment of inertia, I.
 
-Windows:
+- **Stress analysis**: Given a set of critical (interest) points, establish the
+general 3D stress state to allow for the application of (i) static and 
+(ii) fatigue failure theories.
 
-```sh
-edit autoexec.bat
-```
+- **Shaft 3D model**: Allow to export the final design as a `*.step` file.
 
 ## Usage example
 
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
-
-_For more examples and usage, please refer to the [Wiki][wiki]._
-
-## Development setup
-
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
-
-```sh
-make install
-npm test
-```
+In construction.
 
 ## Release History
 
-* 0.2.1
-    * CHANGE: Update docs (module code remains unchanged)
-* 0.2.0
-    * CHANGE: Remove `setDefaultXYZ()`
-    * ADD: Add `init()`
-* 0.1.1
-    * FIX: Crash when calling `baz()` (Thanks @GenerousContributorName!)
-* 0.1.0
-    * The first proper release
-    * CHANGE: Rename `foo()` to `bar()`
-* 0.0.1
-    * Work in progress
-
 ## Meta
 
-Alexandre Ribeiro – [@engribeiroale](https://twitter.com/ribeiroale) – EngRibeiroAle@gmail.com
+Alexandre Ribeiro – [@engribeiroale](https://twitter.com/ribeiroale) – 
+EngRibeiroAle@gmail.com
 
-Distributed under the GNU General Public License v3. See ``LICENSE`` for more information.
+Distributed under the GNU General Public License v3. See ``LICENSE`` for more 
+information.
 
-[https://github.com/ribeiroale/salem](https://github.com/ribeiroale/)
+[https://github.com/ribeiroale/potts](https://github.com/ribeiroale/potts)
 
 <!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/yourname/yourproject/wiki
+[wiki]: https://github.com/ribeiroale/potts/wiki
