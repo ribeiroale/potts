@@ -8,8 +8,7 @@
 #                                   Imports                                   #
 # =========================================================================== #
 
-from typing import Iterable
-from utils import linear
+from utils import linear_spacing
 
 # =========================================================================== #
 #                                   Classes                                   #
@@ -24,24 +23,23 @@ class LoadingCase:
     def set_length(self, length: float) -> None:
         self.length = length
 
-    def add_supports(self, supports: Iterable) -> None:
+    def add_supports(self, supports) -> None:
         for support in supports:
             self.supports.append(support)
         self.supports.sort()
 
-    def add_loads(self, loads: Iterable, category: str) -> None:
+    def add_loads(self, loads, category: str) -> None:
         for load in loads:
             self.loads.append(load)
         self.loads.sort(key=lambda load: load[1])
 
     def solve(self, num_points=100) -> None:
-        x = linear(0, self.length, num_points=num_points)
-
+        x = linear_spacing(0, self.length, num_points)
         self.reactions = self.reaction()
         self.shear_diagram = [self.shear(_) for _ in x]
         self.bend_diagram = [self.bending(_) for _ in x]
 
-    def reaction(self):
+    def reaction(self) -> list:
         # Improve this looping
         # loads[i][0] -> magn, loads[i][1] -> x_pos
         R1 = sum(
