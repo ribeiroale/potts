@@ -2,8 +2,6 @@
 Power Transmission Shaft Analysis Framework for Python
 > A framework for the analysis of power transmission shafts in engineering
 
-One to two paragraph statement about your product and what it does.
-
 ## Description
 `potts` aims to be a general-purpose framework in Python for the analysis 
 (and design) of power transmission shafts in the context of Mechanical 
