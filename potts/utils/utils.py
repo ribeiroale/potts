@@ -19,7 +19,7 @@ from numbers import Real
 class Singularity:
     """Class used to represent singularity functions.
 
-    From <https://en.wikipedia.org/wiki/Singularity_function> :
+    From <https://en.wikipedia.org/wiki/Singularity_function>:
         Singularity functions are a class of discontinuous functions that
         contain singularities, i.e. they are discontinuous at their singular
         points.
@@ -81,6 +81,7 @@ class Singularity:
 # =========================================================================== #
 #                                  Functions                                  #
 # =========================================================================== #
+
 
 def linear_spacing(
     start: float,

@@ -30,7 +30,7 @@ In construction.
 
 ## Meta
 
-Alexandre Ribeiro – [@engribeiroale](https://twitter.com/ribeiroale) – 
+Alexandre Ribeiro – [@engribeiroale](https://twitter.com/engribeiroale) – 
 EngRibeiroAle@gmail.com
 
 Distributed under the GNU General Public License v3. See ``LICENSE`` for more 
