@@ -8,11 +8,20 @@
 #                                   Imports                                   #
 # =========================================================================== #
 
-from potts.utils.utils import linear_spacing
+from potts.utils.utils import linear_spacing, SingTrm
+from typing import List
 
 # =========================================================================== #
 #                                   Classes                                   #
 # =========================================================================== #
+
+
+class Load:
+    def __init__(self, loads: List[SingTrm]) -> None:
+        self.loads = loads
+
+    def __call__(self, x: float):
+        return sum([i(x) for i in self.loads])
 
 
 class LoadingCase:

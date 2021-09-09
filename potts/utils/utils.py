@@ -9,14 +9,13 @@ in the 'potts' package shorter and easier"""
 #                                   Imports                                   #
 # =========================================================================== #
 
-from numbers import Real
 
 # =========================================================================== #
 #                                   Classes                                   #
 # =========================================================================== #
 
 
-class Singularity:
+class SingTrm:
     """Class used to represent singularity functions.
 
     From <https://en.wikipedia.org/wiki/Singularity_function>:
@@ -26,26 +25,33 @@ class Singularity:
 
     Attributes
     ----------
-    a : float
-        denotes where in the singularity function either acts or begins to act
-    n : int
-        defines the desired discontinuous function
+    coef : float
+           constant multiplying the singularity function
+    a    : float
+           denotes where in the singularity function either acts or begins to act
+    expo : int
+           defines the desired discontinuous function
     """
 
-    def __init__(self, a: float, n: int) -> None:
+    def __init__(self, coef: float, a: float, expo: float) -> None:
         """
-        Parameters
+        Attributes
         ----------
-        a : float
-            denotes where in the singularity function either acts or begins to act
-        n : int
-            defines the desired discontinuous function
+        coef : float
+               constant multiplying the singularity function
+        a    : float
+               denotes where in the singularity function either acts or begins to act
+        expo : int
+               defines the desired discontinuous function
         """
+        if expo < -2:
+            raise ValueError("Unsupported value for 'expo' < -2")
+        else:
+            self.expo = expo
         self.a = a
-        self.n = n
-        self._const = 1.0
+        self.coef = coef
 
-    def __call__(self, x) -> Real:
+    def __call__(self, x: float) -> float:
         """Evaluate the singularity function at point 'x'.
 
         Parameters
@@ -53,29 +59,18 @@ class Singularity:
         x : float
             variable of interest
         """
-        return 0 if x <= self.a else self._const * (x - self.a) ** self.n
-
-    def integrate(self) -> None:
-        """Integrate the singularity function in-place."""
-        if self.n < 0:
-            self.n = self.n + 1
+        if self.expo < 0:
+            return self.coef if x == self.a else 0
+        elif self.expo == 0:
+            return 0 if x < self.a else self.coef * 1
         else:
-            self.n = self.n + 1
-            self._const *= 1 / self.n
+            return 0 if x < self.a else self.coef * (x - self.a) ** self.expo
 
-    def differentiate(self) -> None:
-        """Differentiate the singularity function in-place."""
-        if self.n <= 0:
-            self.n = self.n - 1
-        else:
-            self._const *= self.n
-            self.n = self.n - 1
+    def __repr__(self) -> str:
+        return f"SingTrm({self.coef}, {self.a}, {self.expo})"
 
-    def derivative(self) -> "Singularity":
-        """Copy this function and return its derivative."""
-        diff = Singularity(self.a, self.n)  # make a copy
-        diff.differentiate()
-        return diff
+    def __str__(self) -> str:
+        return f"{self.coef} * <x - {self.a}> ^ {self.expo}"
 
 
 # =========================================================================== #
@@ -83,13 +78,15 @@ class Singularity:
 # =========================================================================== #
 
 
-def linear_spacing(
-    start: float,
-    end: float,
-    num_points: int = 100,
-    end_point: bool = True,
-    ret_step: bool = False,
-):
+def integrate(x: SingTrm) -> SingTrm:
+    if x.expo < 0:
+        return SingTrm(x.coef, x.a, x.expo + 1)
+    else:
+        return SingTrm(x.coef / (x.expo + 1), x.a, x.expo + 1)
+
+
+def linear_spacing(start: float, end: float, num_points: int = 100,
+                   end_point: bool = True, ret_step: bool = False):
     """Return evenly spaced numbers of a given interval.
 
     Returns a list containing 'num_points' evenly spaced numbers over the
